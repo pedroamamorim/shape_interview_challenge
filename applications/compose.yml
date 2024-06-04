@@ -1,0 +1,30 @@
+version: '3'
+services:
+  fastapi:
+    build: ./fastapi
+    image: back:0.0.1
+    container_name: backend
+    volumes:
+      - ./fastapi:/app
+    ports:
+      - "9000:8000"
+    # network_mode: "bridge"
+    networks:
+      - application_network
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --workers 1
+  streamlit:
+    build: ./streamlit
+    image: front:0.0.1
+    container_name: frontend
+    volumes:
+      - ./streamlit:/app
+    ports:
+      - "9501:8501"
+    # network_mode: "bridge"
+    networks:
+      - application_network
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+
+networks:
+  application_network:
+    driver: bridge

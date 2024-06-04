@@ -1,0 +1,13 @@
+pandas
+ydata-profiling
+numpy
+openpyxl
+ipywidgets
+PyQt5
+scikit-learn
+optuna
+plotly
+nbformat
+lime
+streamlit
+imbalanced-learn
